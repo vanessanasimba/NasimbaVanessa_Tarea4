@@ -15,8 +15,8 @@ import Swal from 'sweetalert2';
 export class NuevaunidadmedidaComponent implements OnInit{
   titulo = 'Nueva Unidad de Medida';
   frm_UnidadMedida: FormGroup;
-  idUnidadMedida = 0;
 
+  idUnidadMedida = 0;
   constructor(
     private unidadService: UnidadmedidaService,
     private navegacion: Router,
@@ -28,13 +28,11 @@ export class NuevaunidadmedidaComponent implements OnInit{
       Detalle: new FormControl('', [Validators.required]),
       Tipo: new FormControl('', [Validators.required])
     });
-
     this.idUnidadMedida = parseInt(this.ruta.snapshot.paramMap.get('id'));
-
     if (this.idUnidadMedida > 0) {
       this.unidadService.uno(this.idUnidadMedida).subscribe((x) => {
-        this.frm_UnidadMedida.get('Detalle').setValue(x.Detalle);
-        this.frm_UnidadMedida.get('Tipo').setValue(x.Tipo);
+        this.frm_UnidadMedida.get('Detalle')?.setValue(x.Detalle);
+        this.frm_UnidadMedida.get('Tipo')?.setValue(x.Tipo);
       });
     }
   }
